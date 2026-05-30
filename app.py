@@ -556,6 +556,12 @@ def show_prediction(df: pd.DataFrame, pipeline: Pipeline) -> None:
         source = st.selectbox("Source", sorted(df["source"].unique()))
         rating = st.slider("Rating", min_value=1.0, max_value=5.0, value=4.6, step=0.1)
     with input_cols[2]:
+        age_group_primary = st.selectbox("Primary age group", sorted(df["age_group_primary"].unique()))
+        age_group_age_range = st.selectbox("Product age range", get_age_ranges(df))
+        price_verification_status = st.selectbox(
+            "Price verification",
+            sorted(df["price_verification_status"].unique()),
+        )
         reviews = st.number_input("Reviews", min_value=0, value=750, step=50)
         tag_count = st.slider("Number of tags", min_value=0, max_value=15, value=6)
         name_length = st.slider("Product name length", min_value=5, max_value=120, value=42)
@@ -568,6 +574,9 @@ def show_prediction(df: pd.DataFrame, pipeline: Pipeline) -> None:
                 "subcat": subcategory,
                 "stock": stock,
                 "source": source,
+                "age_group_primary": age_group_primary,
+                "age_group_age_range": age_group_age_range,
+                "price_verification_status": price_verification_status,
                 "rating": rating,
                 "reviews": reviews,
                 "tag_count": tag_count,
