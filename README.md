@@ -39,8 +39,17 @@ The `Popular Products` tab takes:
 - age range
 - location
 
-The current CSV does not include real users, ages, locations, or purchase
-history, so the app builds learning-friendly popularity labels from product
-rating, reviews, stock, source, category, and preference keyword matches. Once
-you collect real user interaction data, those generated labels can be replaced
-with actual clicks, purchases, wishlists, or ratings.
+The app can read product-level `ageGroup` and `priceVerification` objects from
+`data.csv`. If those fields are present, they are used as model features and are
+shown in the recommendations table. If they are missing, the app falls back to
+default age ranges so it still runs.
+
+The CSV does not include real user click or purchase history yet, so the app
+builds learning-friendly popularity labels from product rating, reviews, stock,
+source, category, age group, and preference keyword matches. Once you collect
+real user interaction data, those generated labels can be replaced with actual
+clicks, purchases, wishlists, or ratings.
+
+The app shows model accuracy as an R2-based percentage. For regression models,
+this means how well the model explains the validation data, not classification
+accuracy.
